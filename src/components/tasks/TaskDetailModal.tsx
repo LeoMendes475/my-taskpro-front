@@ -65,7 +65,7 @@ export function TaskDetailModal({
           <div className="flex-1 min-w-0">
             <p className="text-xs text-text-muted uppercase tracking-widest mb-1">{task.category}</p>
             <h2 className={cn(
-              'text-base font-semibold text-text-primary leading-snug',
+              'text-base font-semibold text-text-primary leading-snug break-words',
               task.completed && 'line-through text-text-muted'
             )}>
               {task.title}

@@ -19,7 +19,7 @@ Interface web para o Task Manager API, construída com Next.js 14, TypeScript, T
 
 ## Arquitetura
 
-```
+```text
 src/
 ├── app/                    # Next.js App Router (pages)
 │   ├── page.tsx            # Landing page
@@ -28,8 +28,8 @@ src/
 │   │   └── register/page.tsx
 │   └── dashboard/page.tsx  # Home autenticada
 ├── components/
-│   ├── ui/                 # Componentes reutilizáveis (Input, Button, Modal, Select)
-│   └── tasks/              # Componentes de tarefa (TaskCard, TaskForm, FilterBar, ProgressBar)
+│   ├── ui/                 # Componentes reutilizáveis (Input, Button, Modal, Select, Pagination, ConfirmModal, PasswordStrength)
+│   └── tasks/              # Componentes de tarefa (TaskCard, TaskForm, TaskDetailModal, TaskSkeleton, FilterBar, ProgressBar)
 ├── hooks/
 │   ├── useAuth.ts          # Mutations e queries de autenticação
 │   └── useTasks.ts         # CRUD de tarefas com filtros
@@ -67,7 +67,8 @@ cp .env.local.example .env.local
 ```
 
 Edite `.env.local`:
-```
+
+```env
 NEXT_PUBLIC_API_URL=http://localhost:3333
 ```
 
@@ -98,9 +99,15 @@ Acesse `http://localhost:3000`.
 - ✅ Token JWT salvo em cookie (1 dia)
 - ✅ Redirect automático para login ao expirar token (interceptor Axios)
 - ✅ Listagem de tarefas do usuário logado
+- ✅ Login e cadastro com validação Zod
+- ✅ Indicador de força de senha no cadastro
+- ✅ Token JWT salvo em cookie (1 dia)
+- ✅ Redirect automático para login ao expirar token (interceptor Axios)
+- ✅ Listagem de tarefas do usuário logado com paginação
 - ✅ Criar tarefa (título, categoria, duração em minutos)
+- ✅ Visualizar detalhes da tarefa via modal
 - ✅ Editar tarefa via modal
-- ✅ Deletar tarefa
+- ✅ Deletar tarefa com modal de confirmação
 - ✅ Marcar/desmarcar como concluída
 - ✅ Filtro por período: Hoje / Semana / Mês
 - ✅ Filtro por categoria
@@ -115,7 +122,7 @@ Acesse `http://localhost:3000`.
 ## Princípios aplicados
 
 | Princípio | Aplicação |
-|-----------|-----------|
+| --- | --- |
 | **Single Responsibility** | Cada componente/hook faz uma única coisa |
 | **Clean Architecture** | `services` → `hooks` → `components` → `pages` sem dependências invertidas |
 | **Open/Closed** | Componentes UI aceitam extensão via props sem modificação |
